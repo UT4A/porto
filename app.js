@@ -5,7 +5,7 @@ const profile = {
     "HI, aku Utaa dan aku siap bantu konten kamu kelihatan premium :).",
   email: "uutaasatuu@gmail.com",
   whatsappNumber: "6281234567890",
-  discordUrl:"https://discordid.netlify.app/?id=996760299229171732",
+  discordUrl: "https://discord.com/users/996760299229171732",
   instagramUrl: "https://www.instagram.com/goofvypz/",
   stats: {
     years: "2+",
