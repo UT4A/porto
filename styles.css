@@ -9,21 +9,23 @@
   --shadow: rgba(0, 0, 0, 0.24);
   --container: 1120px;
   --radius: 10px;
+  --font-ui: Tahoma, Verdana, "Segoe UI", system-ui, sans-serif;
+  --font-pixel: "Minecraft", var(--font-ui);
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  height: 100%;
+@font-face {
+  font-family: "Minecraft";
+  src:
+    url("./assets/fonts/Minecraft.woff2") format("woff2"),
+    url("./assets/fonts/Minecraft.woff") format("woff"),
+    url("./assets/fonts/Minecraft.ttf") format("truetype");
+  font-display: swap;
 }
 
 body.xp {
   margin: 0;
   color: var(--xp-ink);
-  font-family: Tahoma, Verdana, "Segoe UI", system-ui, sans-serif;
+  font-family: var(--font-pixel);
   background: url("./assets/bliss.svg") center / cover fixed no-repeat;
 }
 
