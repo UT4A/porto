@@ -2,13 +2,13 @@ const profile = {
   name: "Utaa",
   role: "Video Editor",
   tagline:
-    "Edit yang rapih, pacing yang enak, color yang konsisten. Siap bantu konten kamu kelihatan premium.",
-  email: "you@email.com",
+    "HI, aku Utaa dan aku siap bantu konten kamu kelihatan premium :).",
+  email: "uutaasatuu@gmail.com",
   whatsappNumber: "6281234567890",
-  instagramUrl: "https://instagram.com/",
+  instagramUrl: "https://www.instagram.com/goofvypz/",
   stats: {
-    years: "5+",
-    projects: "120+",
+    years: "2+",
+    projects: "50+",
     turnaround: "24h",
   },
 };
