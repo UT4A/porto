@@ -1,5 +1,5 @@
 const profile = {
-  name: "Nama Kamu",
+  name: "Utaa",
   role: "Video Editor",
   tagline:
     "Edit yang rapih, pacing yang enak, color yang konsisten. Siap bantu konten kamu kelihatan premium.",
