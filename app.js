@@ -5,6 +5,7 @@ const profile = {
     "HI, aku Utaa dan aku siap bantu konten kamu kelihatan premium :).",
   email: "uutaasatuu@gmail.com",
   whatsappNumber: "6281234567890",
+  discordurl:"https://discordid.netlify.app/?id=996760299229171732",
   instagramUrl: "https://www.instagram.com/goofvypz/",
   stats: {
     years: "2+",
@@ -13,8 +14,6 @@ const profile = {
   },
 };
 
-// Ganti project di bawah ini sesuai portofolio kamu.
-// Tips: YouTube paling gampang pakai `type: "youtube"` dan `id` (bukan URL).
 const projects = [
   {
     title: "Showreel 2026",
@@ -103,6 +102,7 @@ const elements = {
   statTurnaround: document.getElementById("stat-turnaround"),
   btnEmail: document.getElementById("btn-email"),
   btnWhatsapp: document.getElementById("btn-whatsapp"),
+  btnDiscord: document.getElementById("btn-discord"),
   btnInstagram: document.getElementById("btn-instagram"),
   footerName: document.getElementById("footer-name"),
   year: document.getElementById("year"),
@@ -124,9 +124,10 @@ function setProfile() {
   elements.statYears.textContent = profile.stats.years;
   elements.statProjects.textContent = profile.stats.projects;
   elements.statTurnaround.textContent = profile.stats.turnaround;
-
+if (elements.btnDiscord) elements.btnDiscord.href = profile.discordUrl;
   elements.btnEmail.href = `mailto:${profile.email}`;
   elements.btnWhatsapp.href = `https://wa.me/${profile.whatsappNumber}`;
+  
   elements.btnInstagram.href = profile.instagramUrl;
 
   elements.footerName.textContent = profile.name;
