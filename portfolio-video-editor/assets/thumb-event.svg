@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Event thumbnail">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2d51ff"/>
+      <stop offset="0.45" stop-color="#0b0b0b"/>
+      <stop offset="1" stop-color="#ff5a3d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <g fill="rgba(255,255,255,0.18)">
+    <circle cx="220" cy="210" r="150"/>
+    <circle cx="1040" cy="510" r="220"/>
+  </g>
+  <text x="74" y="116" fill="rgba(255,255,255,0.92)" font-family="Arial, sans-serif" font-size="54" font-weight="800">AFTERMOVIE</text>
+  <text x="74" y="168" fill="rgba(255,255,255,0.72)" font-family="Arial, sans-serif" font-size="26" font-weight="650">Beat sync - highlight moments</text>
+  <g fill="rgba(255,255,255,0.92)">
+    <path d="M580 300l180 96-180 96z"/>
+  </g>
+</svg>
+

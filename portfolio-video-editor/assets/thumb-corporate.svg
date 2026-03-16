@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Corporate thumbnail">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0b0b"/>
+      <stop offset="0.55" stop-color="#171717"/>
+      <stop offset="1" stop-color="#fff5e6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <g fill="rgba(255,255,255,0.12)">
+    <rect x="86" y="112" width="520" height="120" rx="26"/>
+    <rect x="86" y="258" width="720" height="80" rx="22"/>
+    <rect x="86" y="356" width="640" height="80" rx="22"/>
+  </g>
+  <text x="110" y="188" fill="rgba(255,255,255,0.92)" font-family="Arial, sans-serif" font-size="50" font-weight="800">CORPORATE</text>
+  <text x="110" y="322" fill="rgba(255,255,255,0.70)" font-family="Arial, sans-serif" font-size="26" font-weight="650">Clean edit - brand tone</text>
+  <g fill="rgba(255,255,255,0.92)">
+    <path d="M600 428l170 90-170 90z"/>
+  </g>
+</svg>
+

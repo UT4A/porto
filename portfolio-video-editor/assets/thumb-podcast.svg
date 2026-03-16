@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Podcast thumbnail">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff5e6"/>
+      <stop offset="0.52" stop-color="#2d51ff"/>
+      <stop offset="1" stop-color="#1b8a7a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <rect x="82" y="92" width="520" height="86" rx="22" fill="rgba(23,23,23,0.82)"/>
+  <text x="110" y="150" fill="#fff" font-family="Arial, sans-serif" font-size="44" font-weight="800">PODCAST</text>
+  <rect x="82" y="218" width="690" height="54" rx="18" fill="rgba(255,255,255,0.26)"/>
+  <rect x="82" y="286" width="580" height="54" rx="18" fill="rgba(255,255,255,0.22)"/>
+  <rect x="82" y="354" width="640" height="54" rx="18" fill="rgba(255,255,255,0.18)"/>
+  <g fill="rgba(23,23,23,0.86)">
+    <path d="M628 410l152 80-152 80z"/>
+  </g>
+</svg>
+

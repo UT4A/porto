@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Ads thumbnail">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff5e6"/>
+      <stop offset="0.45" stop-color="#ffdfd8"/>
+      <stop offset="1" stop-color="#2d51ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <circle cx="980" cy="220" r="210" fill="rgba(27,138,122,0.32)"/>
+  <circle cx="240" cy="520" r="260" fill="rgba(255,90,61,0.26)"/>
+  <rect x="72" y="86" width="460" height="66" rx="18" fill="rgba(23,23,23,0.82)"/>
+  <text x="98" y="132" fill="#fff" font-family="Arial, sans-serif" font-size="34" font-weight="700">ADS EDIT</text>
+  <text x="72" y="210" fill="rgba(23,23,23,0.78)" font-family="Arial, sans-serif" font-size="30" font-weight="700">Hook cepat</text>
+  <text x="72" y="252" fill="rgba(23,23,23,0.62)" font-family="Arial, sans-serif" font-size="22" font-weight="600">Caption dinamis - benefit fokus</text>
+  <g fill="rgba(23,23,23,0.86)">
+    <path d="M588 304l152 80-152 80z"/>
+  </g>
+</svg>
+
