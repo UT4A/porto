@@ -89,9 +89,58 @@ body.xp {
   box-shadow: 0 20px 60px var(--shadow);
   overflow: hidden;
   background: var(--xp-surface);
+  position: relative;
 }
 .xp-window--wide {
   width: 100%;
+}
+
+/* Flame outline effect (best-effort, CSS-only) */
+.xp-window--flame::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: calc(var(--radius) + 12px);
+  background:
+    conic-gradient(
+      from 0deg,
+      rgba(255, 200, 90, 0.9),
+      rgba(255, 120, 40, 0.95),
+      rgba(255, 40, 80, 0.85),
+      rgba(255, 180, 60, 0.95),
+      rgba(255, 200, 90, 0.9)
+    );
+  filter: blur(10px);
+  opacity: 0.8;
+  animation: flameSpin 2.8s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+.xp-window--flame::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: calc(var(--radius) + 4px);
+  background: transparent;
+  box-shadow:
+    0 0 0 2px rgba(255, 190, 90, 0.35),
+    0 0 24px rgba(255, 120, 40, 0.28),
+    0 0 44px rgba(255, 40, 80, 0.18);
+  z-index: 0;
+  pointer-events: none;
+}
+.xp-window--flame > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes flameSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .xp-titlebar {
