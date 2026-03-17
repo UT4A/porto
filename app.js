@@ -65,6 +65,7 @@ const projects = [
     tags: ["Short"],
     thumb: "./assets/windows-xp-kucing.jpg",
     video: { type: "youtube", id: "i1UvmXuK5fo" },
+    inlinePreview: true,
     description: "Short video portfolio.",
   },
   {
@@ -198,11 +199,31 @@ function projectCard(project, index) {
   const thumb = document.createElement("div");
   thumb.className = "thumb";
 
-  const img = document.createElement("img");
-  img.src = project.thumb;
-  img.alt = `Thumbnail: ${project.title}`;
-  img.loading = "lazy";
-  thumb.appendChild(img);
+  if (project.inlinePreview && project.video && project.video.type === "youtube") {
+    const url = new URL("https://www.youtube.com/embed/" + project.video.id);
+    url.searchParams.set("autoplay", "1");
+    url.searchParams.set("mute", "1");
+    url.searchParams.set("controls", "0");
+    url.searchParams.set("rel", "0");
+    url.searchParams.set("modestbranding", "1");
+    url.searchParams.set("playsinline", "1");
+    url.searchParams.set("loop", "1");
+    url.searchParams.set("playlist", project.video.id);
+
+    const iframe = document.createElement("iframe");
+    iframe.src = url.toString();
+    iframe.title = `${project.title} (preview)`;
+    iframe.allow = "autoplay; encrypted-media; picture-in-picture";
+    iframe.allowFullscreen = true;
+    iframe.loading = "lazy";
+    thumb.appendChild(iframe);
+  } else {
+    const img = document.createElement("img");
+    img.src = project.thumb;
+    img.alt = `Thumbnail: ${project.title}`;
+    img.loading = "lazy";
+    thumb.appendChild(img);
+  }
 
   const play = document.createElement("div");
   play.className = "play";
