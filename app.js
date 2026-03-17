@@ -4,7 +4,6 @@ const profile = {
   tagline:
     "HI, nama ku Utaa dan aku siap bantu konten kamu kelihatan premium.",
   tiktokProfileUrl: "https://www.tiktok.com/@dolbiaja?lang=en-GB",
-  whatsappNumber: "6281234567890",
   discordUrl: "https://discord.com/users/996760299229171732",
   instagramUrl: "https://instagram.com/",
   stats: {
@@ -125,7 +124,6 @@ const elements = {
   statProjects: document.getElementById("stat-projects"),
   statTurnaround: document.getElementById("stat-turnaround"),
   btnEmail: document.getElementById("btn-email"),
-  btnWhatsapp: document.getElementById("btn-whatsapp"),
   btnDiscord: document.getElementById("btn-discord"),
   btnInstagram: document.getElementById("btn-instagram"),
   footerName: document.getElementById("footer-name"),
@@ -150,7 +148,6 @@ function setProfile() {
   elements.statTurnaround.textContent = profile.stats.turnaround;
 
   elements.btnEmail.href = profile.tiktokProfileUrl;
-  elements.btnWhatsapp.href = `https://wa.me/${profile.whatsappNumber}`;
   if (elements.btnDiscord) elements.btnDiscord.href = profile.discordUrl;
   elements.btnInstagram.href = profile.instagramUrl;
 
