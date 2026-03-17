@@ -289,20 +289,28 @@ function youtubeWatchUrl(id) {
 
 function buildEmbed(project) {
   if (project.video.type === "youtube") {
-    // Some Shorts/region-restricted videos can fail on nocookie embeds (Error 153).
-    // Using the standard embed domain tends to be more compatible.
-    const url = new URL("https://www.youtube.com/embed/" + project.video.id);
+    // YouTube embeds can be picky (especially Shorts). This variant often works better:
+    // - privacy-enhanced domain
+    // - explicit origin/widget_referrer
+    const url = new URL("https://www.youtube-nocookie.com/embed/" + project.video.id);
     url.searchParams.set("autoplay", "1");
     url.searchParams.set("rel", "0");
     url.searchParams.set("modestbranding", "1");
     url.searchParams.set("playsinline", "1");
-    url.searchParams.set("mute", "0");
+    url.searchParams.set("enablejsapi", "1");
+    try {
+      url.searchParams.set("origin", window.location.origin);
+      url.searchParams.set("widget_referrer", window.location.href);
+    } catch {
+      // ignore
+    }
     const iframe = document.createElement("iframe");
     iframe.src = url.toString();
     iframe.title = project.title;
     iframe.allow =
       "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
     iframe.allowFullscreen = true;
+    iframe.referrerPolicy = "strict-origin-when-cross-origin";
     return iframe;
   }
 
