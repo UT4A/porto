@@ -24,7 +24,7 @@ const projects = [
     duration: "0:15",
     tags: ["Short"],
     thumb: "./assets/windows-xp-pixel.jpg",
-    video: { type: "gdrive", id: "1F-uHP3NFETB-gP2AiZjPIxNeRx9G5PxR" },
+    video: { type: "youtube", id: "aqz-KE-bpKQ" },
     description: "Short video portfolio.",
   },
   {
@@ -34,7 +34,7 @@ const projects = [
     duration: "0:20",
     tags: ["Short"],
     thumb: "./assets/windows-xp-kucing.jpg",
-    video: { type: "tiktok", id: "7615919678807919893" },
+    video: { type: "youtube", id: "dQw4w9WgXcQ" },
     description: "Short video portfolio.",
   },
   {
@@ -44,7 +44,7 @@ const projects = [
     duration: "0:18",
     tags: ["Short"],
     thumb: "./assets/windows-xp-garis.jpg",
-    video: { type: "youtube", id: "zjH7hudm7dU" },
+    video: { type: "youtube", id: "9No-FiEInLA" },
     description: "Short video portfolio.",
   },
   {
@@ -54,7 +54,7 @@ const projects = [
     duration: "0:12",
     tags: ["Short"],
     thumb: "./assets/windows-xp-pixel.jpg",
-    video: { type: "youtube", id: "9No-FiEInLA" },
+    video: { type: "youtube", id: "zjH7hudm7dU" },
     description: "Short video portfolio.",
   },
   {
@@ -64,7 +64,7 @@ const projects = [
     duration: "0:16",
     tags: ["Short"],
     thumb: "./assets/windows-xp-kucing.jpg",
-    video: { type: "youtube", id: "ysz5S6PUM-U" },
+    video: { type: "youtube", id: "i1UvmXuK5fo" },
     description: "Short video portfolio.",
   },
   {
@@ -74,7 +74,7 @@ const projects = [
     duration: "0:14",
     tags: ["Short"],
     thumb: "./assets/windows-xp-garis.jpg",
-    video: { type: "youtube", id: "5qap5aO4i9A" },
+    video: { type: "youtube", id: "pJqQZBkODQw" },
     description: "Short video portfolio.",
   },
   {
@@ -84,7 +84,7 @@ const projects = [
     duration: "0:19",
     tags: ["Short"],
     thumb: "./assets/windows-xp-pixel.jpg",
-    video: { type: "youtube", id: "aqz-KE-bpKQ" },
+    video: { type: "gdrive", id: "1F-uHP3NFETB-gP2AiZjPIxNeRx9G5PxR" },
     description: "Short video portfolio.",
   },
   {
@@ -94,7 +94,11 @@ const projects = [
     duration: "0:17",
     tags: ["Short"],
     thumb: "./assets/windows-xp-kucing.jpg",
-    video: { type: "youtube", id: "dQw4w9WgXcQ" },
+    video: {
+      type: "tiktok",
+      id: "7615919678807919893",
+      url: "https://www.tiktok.com/@mrzofei/video/7615919678807919893",
+    },
     description: "Short video portfolio.",
   },
   {
@@ -104,7 +108,11 @@ const projects = [
     duration: "0:13",
     tags: ["Short"],
     thumb: "./assets/windows-xp-garis.jpg",
-    video: { type: "youtube", id: "ScMzIvxBSi4" },
+    video: {
+      type: "tiktok",
+      id: "7561767461679271189",
+      url: "https://www.tiktok.com/@endul.13/video/7561767461679271189",
+    },
     description: "Short video portfolio.",
   },
 ];
@@ -361,7 +369,7 @@ function openModal(project) {
     elements.modalLink.textContent = "Buka di Google Drive";
     elements.modalLink.style.display = "inline-flex";
   } else if (project.video.type === "tiktok") {
-    elements.modalLink.href = "https://www.tiktok.com/@mrzofei/video/" + project.video.id;
+    elements.modalLink.href = project.video.url || "https://www.tiktok.com/video/" + project.video.id;
     elements.modalLink.textContent = "Buka di TikTok";
     elements.modalLink.style.display = "inline-flex";
   } else if (project.video.type === "vimeo") {
