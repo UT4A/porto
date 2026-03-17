@@ -91,6 +91,11 @@ body.xp {
   background: var(--xp-surface);
   position: relative;
 }
+
+/* Allow the flame outline to render outside the window frame. */
+.xp-window--flame {
+  overflow: visible;
+}
 .xp-window--wide {
   width: 100%;
 }
