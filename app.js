@@ -3,7 +3,7 @@ const profile = {
   role: "Video Editor",
   tagline:
     "HI, nama ku Utaa dan aku siap bantu konten kamu kelihatan premium.",
-  email: "you@email.com",
+  tiktokProfileUrl: "https://www.tiktok.com/@dolbiaja?lang=en-GB",
   whatsappNumber: "6281234567890",
   discordUrl: "https://discord.com/users/996760299229171732",
   instagramUrl: "https://instagram.com/",
@@ -65,7 +65,6 @@ const projects = [
     tags: ["Short"],
     thumb: "./assets/windows-xp-kucing.jpg",
     video: { type: "youtube", id: "i1UvmXuK5fo" },
-    inlinePreview: true,
     description: "Short video portfolio.",
   },
   {
@@ -150,7 +149,7 @@ function setProfile() {
   elements.statProjects.textContent = profile.stats.projects;
   elements.statTurnaround.textContent = profile.stats.turnaround;
 
-  elements.btnEmail.href = `mailto:${profile.email}`;
+  elements.btnEmail.href = profile.tiktokProfileUrl;
   elements.btnWhatsapp.href = `https://wa.me/${profile.whatsappNumber}`;
   if (elements.btnDiscord) elements.btnDiscord.href = profile.discordUrl;
   elements.btnInstagram.href = profile.instagramUrl;
@@ -190,6 +189,63 @@ function clearNode(node) {
   while (node.firstChild) node.removeChild(node.firstChild);
 }
 
+function youtubeThumbUrl(id) {
+  return "https://i.ytimg.com/vi/" + id + "/hqdefault.jpg";
+}
+
+function gdriveThumbUrl(id) {
+  // Works for public/shared files.
+  return "https://drive.google.com/thumbnail?id=" + id + "&sz=w1000";
+}
+
+const tiktokThumbCache = new Map();
+
+async function fetchTikTokThumb(url) {
+  if (!url) return null;
+  if (tiktokThumbCache.has(url)) return tiktokThumbCache.get(url);
+
+  const controller = new AbortController();
+  const timer = window.setTimeout(() => controller.abort(), 3500);
+  try {
+    const oembed = "https://www.tiktok.com/oembed?url=" + encodeURIComponent(url);
+    const res = await fetch(oembed, { signal: controller.signal });
+    if (!res.ok) return null;
+    const json = await res.json();
+    const thumb = json && json.thumbnail_url ? String(json.thumbnail_url) : null;
+    tiktokThumbCache.set(url, thumb);
+    return thumb;
+  } catch {
+    return null;
+  } finally {
+    window.clearTimeout(timer);
+  }
+}
+
+function setProjectThumb(imgEl, project) {
+  if (!(imgEl instanceof HTMLImageElement)) return;
+
+  // Prefer "real" preview thumbnails from the source video.
+  if (project.video && project.video.type === "youtube") {
+    imgEl.src = youtubeThumbUrl(project.video.id);
+    return;
+  }
+  if (project.video && project.video.type === "gdrive") {
+    imgEl.src = gdriveThumbUrl(project.video.id);
+    return;
+  }
+  if (project.video && project.video.type === "tiktok") {
+    // Start with a local placeholder, then try to hydrate via oEmbed.
+    imgEl.src = project.thumb;
+    const url = project.video.url;
+    fetchTikTokThumb(url).then((thumb) => {
+      if (thumb) imgEl.src = thumb;
+    });
+    return;
+  }
+
+  imgEl.src = project.thumb;
+}
+
 function projectCard(project, index) {
   const wrapper = document.createElement("article");
   wrapper.className = "card";
@@ -199,31 +255,11 @@ function projectCard(project, index) {
   const thumb = document.createElement("div");
   thumb.className = "thumb";
 
-  if (project.inlinePreview && project.video && project.video.type === "youtube") {
-    const url = new URL("https://www.youtube.com/embed/" + project.video.id);
-    url.searchParams.set("autoplay", "1");
-    url.searchParams.set("mute", "1");
-    url.searchParams.set("controls", "0");
-    url.searchParams.set("rel", "0");
-    url.searchParams.set("modestbranding", "1");
-    url.searchParams.set("playsinline", "1");
-    url.searchParams.set("loop", "1");
-    url.searchParams.set("playlist", project.video.id);
-
-    const iframe = document.createElement("iframe");
-    iframe.src = url.toString();
-    iframe.title = `${project.title} (preview)`;
-    iframe.allow = "autoplay; encrypted-media; picture-in-picture";
-    iframe.allowFullscreen = true;
-    iframe.loading = "lazy";
-    thumb.appendChild(iframe);
-  } else {
-    const img = document.createElement("img");
-    img.src = project.thumb;
-    img.alt = `Thumbnail: ${project.title}`;
-    img.loading = "lazy";
-    thumb.appendChild(img);
-  }
+  const img = document.createElement("img");
+  img.alt = `Thumbnail: ${project.title}`;
+  img.loading = "lazy";
+  setProjectThumb(img, project);
+  thumb.appendChild(img);
 
   const play = document.createElement("div");
   play.className = "play";
