@@ -35,7 +35,7 @@ body.xp {
   margin: 0;
   color: var(--xp-ink);
   font-family: var(--font-pixel);
-  background: url("./assets/bliss.svg") center / cover fixed no-repeat;
+  background: url("./assets/windows-xp-pixel.jpg") center / cover fixed no-repeat;
 }
 
 .container {
