@@ -287,8 +287,31 @@ function youtubeWatchUrl(id) {
   return url.toString();
 }
 
+// If YouTube keeps returning Error 153 on embeds (common on Shorts), disable embeds
+// and show a "watch on YouTube" fallback instead.
+const YOUTUBE_EMBED_ENABLED = false;
+
 function buildEmbed(project) {
   if (project.video.type === "youtube") {
+    if (!YOUTUBE_EMBED_ENABLED) {
+      const wrap = document.createElement("div");
+      wrap.className = "player-placeholder";
+      const box = document.createElement("div");
+      box.className = "player-placeholder__box";
+      box.innerHTML =
+        '<p class="player-placeholder__title">Preview YouTube dibuka di tab baru</p>' +
+        '<p class="player-placeholder__text">Sebagian video (terutama Shorts) sering memblokir embed di website dan memunculkan Error 153.</p>';
+      const a = document.createElement("a");
+      a.className = "player-placeholder__btn";
+      a.href = youtubeWatchUrl(project.video.id);
+      a.target = "_blank";
+      a.rel = "noreferrer";
+      a.textContent = "Buka di YouTube";
+      box.appendChild(a);
+      wrap.appendChild(box);
+      return wrap;
+    }
+
     // YouTube embeds can be picky (especially Shorts). This variant often works better:
     // - privacy-enhanced domain
     // - explicit origin/widget_referrer
