@@ -1,19 +1,24 @@
 const profile = {
-  name: "Utaa",
+  name: "Nama Kamu",
   role: "Video Editor",
   tagline:
-    "HI, aku Utaa dan aku siap bantu konten kamu kelihatan premium :).",
-  email: "uutaasatuu@gmail.com",
+    "Edit yang rapih, pacing yang enak, color yang konsisten. Siap bantu konten kamu kelihatan premium.",
+  email: "you@email.com",
   whatsappNumber: "6281234567890",
   discordUrl: "https://discord.com/users/996760299229171732",
-  instagramUrl: "https://www.instagram.com/goofvypz/",
+  instagramUrl: "https://instagram.com/",
+  spotifyTrackId: "1WRAkeZLbalgJpQMfhnXLE",
+  // Optional: if you add a file `assets/music.mp3`, this button will play it at low volume.
+  localMusicSrc: "./assets/music.mp3",
   stats: {
-    years: "2+",
-    projects: "50+",
+    years: "5+",
+    projects: "120+",
     turnaround: "24h",
   },
 };
 
+// Ganti project di bawah ini sesuai portofolio kamu.
+// Tips: YouTube paling gampang pakai `type: "youtube"` dan `id` (bukan URL).
 const projects = [
   {
     title: "Showreel 2026",
@@ -115,7 +120,38 @@ const elements = {
   modalBadges: document.getElementById("modalBadges"),
   modalLink: document.getElementById("modalLink"),
   modalDesc: document.getElementById("modalDesc"),
+  spotifyPlayer: document.getElementById("spotifyPlayer"),
+  bgm: document.getElementById("bgm"),
+  musicToggle: document.getElementById("music-toggle"),
 };
+
+function initMusic() {
+  if (elements.spotifyPlayer && profile.spotifyTrackId) {
+    elements.spotifyPlayer.src =
+      "https://open.spotify.com/embed/track/" + encodeURIComponent(profile.spotifyTrackId);
+  }
+
+  if (elements.bgm) {
+    elements.bgm.src = profile.localMusicSrc || "";
+    // Keep it not too loud.
+    elements.bgm.volume = 0.18;
+  }
+
+  if (!elements.musicToggle || !elements.bgm) return;
+
+  elements.musicToggle.addEventListener("click", async () => {
+    try {
+      if (!elements.bgm.src) return;
+      if (elements.bgm.paused) {
+        await elements.bgm.play();
+      } else {
+        elements.bgm.pause();
+      }
+    } catch {
+      // If autoplay is blocked or file missing, user can still use the Spotify embed.
+    }
+  });
+}
 
 function setProfile() {
   elements.name.textContent = profile.name;
@@ -124,10 +160,10 @@ function setProfile() {
   elements.statYears.textContent = profile.stats.years;
   elements.statProjects.textContent = profile.stats.projects;
   elements.statTurnaround.textContent = profile.stats.turnaround;
-if (elements.btnDiscord) elements.btnDiscord.href = profile.discordUrl;
+
   elements.btnEmail.href = `mailto:${profile.email}`;
   elements.btnWhatsapp.href = `https://wa.me/${profile.whatsappNumber}`;
-  
+  if (elements.btnDiscord) elements.btnDiscord.href = profile.discordUrl;
   elements.btnInstagram.href = profile.instagramUrl;
 
   elements.footerName.textContent = profile.name;
@@ -436,3 +472,4 @@ applyFilters();
 wireModal();
 wireSearch();
 revealInit();
+initMusic();

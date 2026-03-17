@@ -10,16 +10,25 @@
   --container: 1120px;
   --radius: 10px;
   --font-ui: Tahoma, Verdana, "Segoe UI", system-ui, sans-serif;
-  --font-pixel: "Minecraft", var(--font-ui);
+  --font-pixel: "Minecraftia", var(--font-ui);
 }
 
 @font-face {
-  font-family: "Minecraft";
+  font-family: "Minecraftia";
   src:
-    url("./assets/fonts/Minecraft.woff2") format("woff2"),
-    url("./assets/fonts/Minecraft.woff") format("woff"),
-    url("./assets/fonts/Minecraft.ttf") format("truetype");
+    url("./assets/fonts/Minecraftia.woff2") format("woff2"),
+    url("./assets/fonts/Minecraftia.woff") format("woff"),
+    url("./assets/fonts/Minecraftia.ttf") format("truetype");
   font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
 }
 
 body.xp {
@@ -168,6 +177,162 @@ body.xp {
   display: block;
   border: 1px solid rgba(0, 0, 0, 0.28);
   background: rgba(255, 255, 255, 0.75);
+}
+
+.cd-player {
+  display: grid;
+  grid-template-columns: 148px 1fr;
+  gap: 12px;
+  padding: 10px;
+  border: 1px solid var(--xp-border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow: inset 1px 1px 0 #ffffff, inset -1px -1px 0 rgba(0, 0, 0, 0.16);
+}
+
+.cd-player__art {
+  border: 1px solid rgba(0, 0, 0, 0.28);
+  border-radius: 6px;
+  background: #f2b5c9;
+  box-shadow: inset 1px 1px 0 #ffffff, inset -1px -1px 0 rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  display: grid;
+  place-items: center;
+}
+
+.cd-player__img {
+  width: 132px;
+  height: 132px;
+  border-radius: 4px;
+  display: block;
+  image-rendering: pixelated;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.cd-player__right {
+  display: grid;
+  gap: 10px;
+}
+
+.cd-player__meta {
+  display: grid;
+  gap: 8px;
+}
+
+.cd-row {
+  display: grid;
+  grid-template-columns: 56px 1fr 44px;
+  gap: 8px;
+  align-items: center;
+}
+
+.cd-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.cd-field {
+  height: 26px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.38);
+  background: #ffffff;
+  box-shadow: inset 1px 1px 0 #ffffff, inset -1px -1px 0 rgba(0, 0, 0, 0.18);
+  font-size: 12px;
+  font-weight: 700;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cd-drive {
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background: linear-gradient(180deg, #ffffff, #dcd7c6);
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.72);
+}
+
+.cd-role {
+  display: inline-flex;
+  gap: 6px;
+  align-items: baseline;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 700;
+}
+.cd-role__value {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.cd-player__slider {
+  position: relative;
+  height: 22px;
+  border: 1px solid rgba(0, 0, 0, 0.28);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.45);
+  box-shadow: inset 1px 1px 0 #ffffff, inset -1px -1px 0 rgba(0, 0, 0, 0.12);
+}
+.cd-track {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 50%;
+  height: 2px;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.22);
+}
+.cd-thumb {
+  position: absolute;
+  top: 3px;
+  left: 35%;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.38);
+  background: linear-gradient(180deg, #ffffff, #dcd7c6);
+  box-shadow: inset 1px 1px 0 #ffffff, inset -1px -1px 0 rgba(0, 0, 0, 0.18);
+}
+
+.cd-player__controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.cd-player__spotify {
+  display: grid;
+  gap: 8px;
+}
+
+.cd-hint {
+  margin: 0;
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.62);
+}
+
+.cd-btn {
+  width: 44px;
+  height: 26px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.32);
+  background: linear-gradient(180deg, #ffffff, #dcd7c6);
+  box-shadow: inset 1px 1px 0 #ffffff, inset -1px -1px 0 rgba(0, 0, 0, 0.18);
+  cursor: default;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+}
+.cd-btn#music-toggle {
+  cursor: pointer;
 }
 
 .kicker {
@@ -599,6 +764,9 @@ body.xp {
   .profile {
     grid-template-columns: 1fr;
   }
+  .cd-player {
+    grid-template-columns: 1fr;
+  }
   .stats {
     grid-template-columns: 1fr;
   }
@@ -613,4 +781,3 @@ body.xp {
     align-items: flex-start;
   }
 }
-
