@@ -517,7 +517,7 @@ body.xp {
 }
 .modal__panel {
   position: relative;
-  width: min(980px, 100%);
+  width: min(920px, 100%);
   border-radius: var(--radius);
   border: 1px solid rgba(0, 0, 0, 0.25);
   background: var(--xp-surface);
@@ -558,11 +558,14 @@ body.xp {
 }
 .modal__body {
   display: grid;
-  grid-template-columns: 1.25fr 0.75fr;
-  min-height: 520px;
+  grid-template-columns: auto minmax(260px, 340px);
+  min-height: 540px;
 }
 .player {
   background: #0b0b0b;
+  aspect-ratio: 9 / 16;
+  height: min(72vh, 720px);
+  max-height: 760px;
 }
 .player iframe,
 .player video {

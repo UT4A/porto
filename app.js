@@ -23,7 +23,11 @@ const projects = [
     duration: "0:15",
     tags: ["Short"],
     thumb: "./assets/windows-xp-pixel.jpg",
-    video: { type: "youtube", id: "aqz-KE-bpKQ" },
+    video: {
+      type: "instagram",
+      shortcode: "DVTcQnjj_tN",
+      url: "https://www.instagram.com/reel/DVTcQnjj_tN/",
+    },
     description: "Short video portfolio.",
   },
   {
@@ -33,7 +37,11 @@ const projects = [
     duration: "0:20",
     tags: ["Short"],
     thumb: "./assets/windows-xp-kucing.jpg",
-    video: { type: "youtube", id: "dQw4w9WgXcQ" },
+    video: {
+      type: "tiktok",
+      id: "7579648670191127809",
+      url: "https://www.tiktok.com/@dolbiaja/video/7579648670191127809",
+    },
     description: "Short video portfolio.",
   },
   {
@@ -43,7 +51,11 @@ const projects = [
     duration: "0:18",
     tags: ["Short"],
     thumb: "./assets/windows-xp-garis.jpg",
-    video: { type: "youtube", id: "9No-FiEInLA" },
+    video: {
+      type: "tiktok",
+      id: "7516948244627328263",
+      url: "https://www.tiktok.com/@dolbiaja/video/7516948244627328263",
+    },
     description: "Short video portfolio.",
   },
   {
@@ -218,6 +230,29 @@ async function fetchTikTokThumb(url) {
   }
 }
 
+const instagramThumbCache = new Map();
+
+async function fetchInstagramThumb(url) {
+  if (!url) return null;
+  if (instagramThumbCache.has(url)) return instagramThumbCache.get(url);
+
+  const controller = new AbortController();
+  const timer = window.setTimeout(() => controller.abort(), 3500);
+  try {
+    const oembed = "https://www.instagram.com/oembed/?url=" + encodeURIComponent(url);
+    const res = await fetch(oembed, { signal: controller.signal });
+    if (!res.ok) return null;
+    const json = await res.json();
+    const thumb = json && json.thumbnail_url ? String(json.thumbnail_url) : null;
+    instagramThumbCache.set(url, thumb);
+    return thumb;
+  } catch {
+    return null;
+  } finally {
+    window.clearTimeout(timer);
+  }
+}
+
 function setProjectThumb(imgEl, project) {
   if (!(imgEl instanceof HTMLImageElement)) return;
 
@@ -235,6 +270,16 @@ function setProjectThumb(imgEl, project) {
     imgEl.src = project.thumb;
     const url = project.video.url;
     fetchTikTokThumb(url).then((thumb) => {
+      if (thumb) imgEl.src = thumb;
+    });
+    return;
+  }
+  if (project.video && project.video.type === "instagram") {
+    imgEl.src = project.thumb;
+    const url =
+      project.video.url ||
+      (project.video.shortcode ? instagramReelUrl(project.video.shortcode) : "");
+    fetchInstagramThumb(url).then((thumb) => {
       if (thumb) imgEl.src = thumb;
     });
     return;
@@ -341,6 +386,10 @@ function youtubeWatchUrl(id) {
   return url.toString();
 }
 
+function instagramReelUrl(shortcode) {
+  return "https://www.instagram.com/reel/" + shortcode + "/";
+}
+
 function buildEmbed(project) {
   if (project.video.type === "youtube") {
     // YouTube embeds can be picky (especially Shorts). This variant often works better:
@@ -380,6 +429,18 @@ function buildEmbed(project) {
   if (project.video.type === "tiktok") {
     const iframe = document.createElement("iframe");
     iframe.src = "https://www.tiktok.com/embed/v2/" + project.video.id;
+    iframe.title = project.title;
+    iframe.allow = "autoplay; fullscreen";
+    iframe.allowFullscreen = true;
+    return iframe;
+  }
+
+  if (project.video.type === "instagram") {
+    const url =
+      project.video.url ||
+      (project.video.shortcode ? instagramReelUrl(project.video.shortcode) : "");
+    const iframe = document.createElement("iframe");
+    iframe.src = url ? url.replace(/\/+$/, "") + "/embed/" : "";
     iframe.title = project.title;
     iframe.allow = "autoplay; fullscreen";
     iframe.allowFullscreen = true;
@@ -432,6 +493,12 @@ function openModal(project) {
   } else if (project.video.type === "tiktok") {
     elements.modalLink.href = project.video.url || "https://www.tiktok.com/video/" + project.video.id;
     elements.modalLink.textContent = "Buka di TikTok";
+    elements.modalLink.style.display = "inline-flex";
+  } else if (project.video.type === "instagram") {
+    elements.modalLink.href =
+      project.video.url ||
+      (project.video.shortcode ? instagramReelUrl(project.video.shortcode) : "https://www.instagram.com/");
+    elements.modalLink.textContent = "Buka di Instagram";
     elements.modalLink.style.display = "inline-flex";
   } else if (project.video.type === "vimeo") {
     elements.modalLink.href = "https://vimeo.com/" + project.video.id;
