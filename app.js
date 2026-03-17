@@ -5,7 +5,7 @@ const profile = {
     "HI, nama ku Utaa dan aku siap bantu konten kamu kelihatan premium.",
   tiktokProfileUrl: "https://www.tiktok.com/@dolbiaja?lang=en-GB",
   discordUrl: "https://discord.com/users/996760299229171732",
-  instagramUrl: "https://instagram.com/",
+  instagramUrl: "https://www.instagram.com/goofvypz/",
   stats: {
     years: "2+",
     projects: "120+",
