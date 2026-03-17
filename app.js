@@ -18,80 +18,94 @@ const profile = {
 // Tips: YouTube paling gampang pakai `type: "youtube"` dan `id` (bukan URL).
 const projects = [
   {
-    title: "Showreel 2026",
-    category: "Showreel",
-    year: "2026",
-    duration: "0:45",
-    tags: ["Cut", "Color", "Sound"],
-    thumb: "./assets/thumb-showreel.svg",
-    video: { type: "youtube", id: "dQw4w9WgXcQ" },
-    description:
-      "Komplikasi highlight: transisi rapih, beat sync, dan color match konsisten.",
-  },
-  {
-    title: "Showreel Shorts",
-    category: "Showreel",
+    title: "Video 1",
+    category: "Shorts",
     year: "2026",
     duration: "0:15",
-    tags: ["Shorts"],
-    thumb: "./assets/thumb-showreel.svg",
+    tags: ["Short"],
+    thumb: "./assets/windows-xp-pixel.jpg",
     video: { type: "gdrive", id: "1F-uHP3NFETB-gP2AiZjPIxNeRx9G5PxR" },
-    description: "Preview dari Google Drive.",
+    description: "Short video portfolio.",
   },
   {
-    title: "Reels Produk Skincare",
-    category: "Ads",
-    year: "2025",
+    title: "Video 2",
+    category: "Shorts",
+    year: "2026",
     duration: "0:20",
-    tags: ["UGC", "Motion Text"],
-    thumb: "./assets/thumb-ads.svg",
+    tags: ["Short"],
+    thumb: "./assets/windows-xp-kucing.jpg",
     video: { type: "tiktok", id: "7615919678807919893" },
-    description:
-      "Hook 2 detik pertama kuat, caption dinamis, dan pacing fokus ke benefit produk.",
+    description: "Short video portfolio.",
   },
   {
-    title: "Vlog Travel Cinematic",
-    category: "Vlog",
-    year: "2025",
-    duration: "6:12",
-    tags: ["Story", "Music"],
-    thumb: "./assets/thumb-vlog.svg",
+    title: "Video 3",
+    category: "Shorts",
+    year: "2026",
+    duration: "0:18",
+    tags: ["Short"],
+    thumb: "./assets/windows-xp-garis.jpg",
     video: { type: "youtube", id: "ScMzIvxBSi4" },
-    description:
-      "Story-driven cut, b-roll terkurasi, dan rhythm yang nyaman untuk long-form.",
+    description: "Short video portfolio.",
   },
   {
-    title: "Aftermovie Event",
-    category: "Event",
-    year: "2024",
-    duration: "1:30",
-    tags: ["Highlights", "Beat Sync"],
-    thumb: "./assets/thumb-event.svg",
+    title: "Video 4",
+    category: "Shorts",
+    year: "2026",
+    duration: "0:12",
+    tags: ["Short"],
+    thumb: "./assets/windows-xp-pixel.jpg",
     video: { type: "youtube", id: "9No-FiEInLA" },
-    description:
-      "Build-up ke peak moment, transisi halus, dan cut yang ngikutin energi crowd.",
+    description: "Short video portfolio.",
   },
   {
-    title: "Podcast Cutdown (Shorts Pack)",
-    category: "Podcast",
-    year: "2024",
-    duration: "0:35",
-    tags: ["Subtitles", "Retention"],
-    thumb: "./assets/thumb-podcast.svg",
-    video: { type: "youtube", id: "5qap5aO4i9A" },
-    description:
-      "Cutdown dari long-form dengan subtitle rapi dan punchline yang lebih cepat.",
-  },
-  {
-    title: "Corporate Profile",
-    category: "Corporate",
-    year: "2023",
-    duration: "2:10",
-    tags: ["Clean", "Brand"],
-    thumb: "./assets/thumb-corporate.svg",
+    title: "Video 5",
+    category: "Shorts",
+    year: "2026",
+    duration: "0:16",
+    tags: ["Short"],
+    thumb: "./assets/windows-xp-kucing.jpg",
     video: { type: "youtube", id: "ysz5S6PUM-U" },
-    description:
-      "Edit clean dengan lower-third minimalis dan tone warna yang sesuai brand.",
+    description: "Short video portfolio.",
+  },
+  {
+    title: "Video 6",
+    category: "Shorts",
+    year: "2026",
+    duration: "0:14",
+    tags: ["Short"],
+    thumb: "./assets/windows-xp-garis.jpg",
+    video: { type: "youtube", id: "5qap5aO4i9A" },
+    description: "Short video portfolio.",
+  },
+  {
+    title: "Video 7",
+    category: "Shorts",
+    year: "2026",
+    duration: "0:19",
+    tags: ["Short"],
+    thumb: "./assets/windows-xp-pixel.jpg",
+    video: { type: "youtube", id: "aqz-KE-bpKQ" },
+    description: "Short video portfolio.",
+  },
+  {
+    title: "Video 8",
+    category: "Shorts",
+    year: "2026",
+    duration: "0:17",
+    tags: ["Short"],
+    thumb: "./assets/windows-xp-kucing.jpg",
+    video: { type: "youtube", id: "dQw4w9WgXcQ" },
+    description: "Short video portfolio.",
+  },
+  {
+    title: "Video 9",
+    category: "Shorts",
+    year: "2026",
+    duration: "0:13",
+    tags: ["Short"],
+    thumb: "./assets/windows-xp-garis.jpg",
+    video: { type: "youtube", id: "ScMzIvxBSi4" },
+    description: "Short video portfolio.",
   },
 ];
 
@@ -184,8 +198,7 @@ function projectCard(project, index) {
 
   const play = document.createElement("div");
   play.className = "play";
-  play.innerHTML =
-    '<span class="play__dot" aria-hidden="true"></span><span>Preview</span>';
+  play.innerHTML = '<span class="play__dot" aria-hidden="true"></span>';
   thumb.appendChild(play);
 
   const body = document.createElement("div");
@@ -195,24 +208,13 @@ function projectCard(project, index) {
   title.className = "card__title";
   title.textContent = project.title;
 
-  const meta = document.createElement("div");
-  meta.className = "card__meta";
-  meta.innerHTML = `<span>${project.year}</span><span class="pill">${project.category}</span>`;
-
-  const btn = document.createElement("button");
-  btn.className = "card__btn";
-  btn.type = "button";
-  btn.textContent = `Play (${project.duration})`;
-  btn.addEventListener("click", () => openModal(project));
-
-  wrapper.addEventListener("click", (e) => {
-    const isButton = e.target instanceof HTMLElement && e.target.closest("button");
-    if (!isButton) openModal(project);
-  });
-
   body.appendChild(title);
-  body.appendChild(meta);
-  body.appendChild(btn);
+  const hint = document.createElement("div");
+  hint.className = "card__hint";
+  hint.textContent = project.duration;
+  body.appendChild(hint);
+
+  wrapper.addEventListener("click", () => openModal(project));
 
   wrapper.appendChild(thumb);
   wrapper.appendChild(body);

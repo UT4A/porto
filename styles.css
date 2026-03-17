@@ -330,10 +330,11 @@ body.xp {
   overflow: hidden;
   background: rgba(255, 255, 255, 0.75);
   box-shadow: inset 1px 1px 0 #ffffff, inset -1px -1px 0 rgba(0, 0, 0, 0.18);
+  cursor: pointer;
 }
 .thumb {
   position: relative;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 9 / 16;
   background: #000000;
 }
 .thumb img {
@@ -344,34 +345,52 @@ body.xp {
 }
 .play {
   position: absolute;
-  left: 8px;
-  bottom: 8px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: rgba(10, 36, 106, 0.86);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  font-weight: 700;
-  font-size: 12px;
-  display: inline-flex;
-  gap: 8px;
-  align-items: center;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
 }
 .play__dot {
-  width: 9px;
-  height: 9px;
-  background: rgba(255, 255, 255, 0.95);
-  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  width: 62px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 0, 0, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+.play__dot::after {
+  content: "";
+  position: absolute;
+  left: 24px;
+  top: 13px;
+  width: 0;
+  height: 0;
+  border-left: 14px solid rgba(255, 255, 255, 0.95);
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
 }
 .card__body {
-  padding: 10px;
-  display: grid;
-  gap: 8px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(236, 233, 216, 0.85));
 }
 .card__title {
   margin: 0;
   font-size: 13px;
   font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card__hint {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.55);
 }
 .card__meta {
   display: flex;
