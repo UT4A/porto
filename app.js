@@ -44,7 +44,7 @@ const projects = [
     duration: "0:18",
     tags: ["Short"],
     thumb: "./assets/windows-xp-garis.jpg",
-    video: { type: "youtube", id: "ScMzIvxBSi4" },
+    video: { type: "youtube", id: "zjH7hudm7dU" },
     description: "Short video portfolio.",
   },
   {
