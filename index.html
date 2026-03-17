@@ -19,7 +19,7 @@
           <div class="xp-titlebar">
             <div class="xp-titlebar__left">
               <span class="xp-titlebar__icon" aria-hidden="true"></span>
-              <span class="xp-titlebar__text">CD Player</span>
+              <span class="xp-titlebar__text">My Profile</span>
             </div>
             <div class="xp-titlebar__btns" aria-hidden="true">
               <span class="xp-tb xp-tb--min">_</span>
@@ -29,89 +29,30 @@
           </div>
 
           <div class="xp-body">
-            <div class="cd-player" aria-label="CD Player profile">
-              <div class="cd-player__art">
+            <div class="profile">
+              <div class="profile__photoWrap">
                 <img
-                  class="cd-player__img"
-                  src="./assets/profile-placeholder.svg"
+                  class="profile__photo"
+                  src="./assets/sad.pfp"
                   alt="Foto profil"
                   width="132"
                   height="132"
                 />
               </div>
 
-              <div class="cd-player__right">
-                <div class="cd-player__meta">
-                  <div class="cd-row">
-                    <div class="cd-label">Artist:</div>
-                    <div class="cd-field">
-                      <span id="profile-name">Nama Kamu</span>
-                    </div>
-                    <div class="cd-drive" aria-hidden="true">(C:)</div>
-                  </div>
-
-                  <div class="cd-row">
-                    <div class="cd-label">Track:</div>
-                    <div class="cd-field">
-                      <span id="profile-tagline"
-                        >Edit yang rapih, pacing yang enak, color yang konsisten.</span
-                      >
-                    </div>
-                    <div class="cd-drive" aria-hidden="true">(C:)</div>
-                  </div>
-
-                  <div class="cd-role">
-                    <span class="cd-role__label">Role:</span>
-                    <span class="cd-role__value" id="profile-role">Video Editor</span>
-                  </div>
-                </div>
-
-                <div class="cd-player__slider" aria-hidden="true">
-                  <div class="cd-track"></div>
-                  <div class="cd-thumb"></div>
-                </div>
-
-                <div class="cd-player__controls" aria-hidden="true">
-                  <button class="cd-btn" type="button">⏮</button>
-                  <button class="cd-btn" type="button" id="music-toggle" aria-label="Play/pause music">
-                    ⏯
-                  </button>
-                  <button class="cd-btn" type="button">⏭</button>
-                  <button class="cd-btn" type="button">⏹</button>
-                </div>
-
-                <div class="cd-player__spotify">
-                  <iframe
-                    id="spotifyPlayer"
-                    title="Spotify player"
-                    style="border-radius: 6px"
-                    src="https://open.spotify.com/embed/track/1WRAkeZLbalgJpQMfhnXLE"
-                    width="100%"
-                    height="80"
-                    frameborder="0"
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy"
-                  ></iframe>
-                  <audio id="bgm" preload="none"></audio>
-                  <p class="cd-hint">
-                    Tips: volume embed Spotify diatur dari player. Kalau mau benar-benar pelan, upload file
-                    audio sendiri ke <span class="code">assets/music.mp3</span>.
-                  </p>
-                </div>
+              <div class="profile__meta">
+                <p class="kicker" id="profile-role">Video Editor</p>
+                <h1 class="title" id="profile-name">Nama Kamu</h1>
+                <p class="subtitle" id="profile-tagline">
+                  Edit yang rapih, pacing yang enak, color yang konsisten. Siap bantu konten kamu kelihatan
+                  premium.
+                </p>
 
                 <div class="cta">
-                  <a class="btn btn--primary" id="btn-email" href="mailto:you@email.com"
-                    >Email</a
-                  >
-                  <a class="btn" id="btn-whatsapp" href="#" target="_blank" rel="noreferrer"
-                    >WhatsApp</a
-                  >
-                  <a class="btn" id="btn-discord" href="#" target="_blank" rel="noreferrer"
-                    >Discord</a
-                  >
-                  <a class="btn" id="btn-instagram" href="#" target="_blank" rel="noreferrer"
-                    >Instagram</a
-                  >
+                  <a class="btn btn--primary" id="btn-email" href="mailto:you@email.com">Email</a>
+                  <a class="btn" id="btn-whatsapp" href="#" target="_blank" rel="noreferrer">WhatsApp</a>
+                  <a class="btn" id="btn-discord" href="#" target="_blank" rel="noreferrer">Discord</a>
+                  <a class="btn" id="btn-instagram" href="#" target="_blank" rel="noreferrer">Instagram</a>
                 </div>
               </div>
             </div>
