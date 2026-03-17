@@ -124,9 +124,9 @@ body.xp {
 
 .neon-ring {
   position: absolute;
-  inset: -14px; /* push the stroke outward so it reads outside the window */
+  inset: -10px; /* sit just outside the window edge */
   pointer-events: none;
-  z-index: -1; /* behind the window, outside edge */
+  z-index: 0;
 }
 .neon-ring svg {
   width: 100%;
@@ -148,17 +148,17 @@ body.xp {
   stroke: url(#neonGrad);
   stroke-width: 2.2;
   stroke-linecap: round;
-  stroke-dasharray: 12 88; /* normalized by pathLength=100 */
+  stroke-dasharray: 10 90; /* normalized by pathLength=100 */
   stroke-dashoffset: 0;
   filter:
-    drop-shadow(0 0 10px rgba(255, 190, 90, 0.8))
-    drop-shadow(0 0 26px rgba(255, 120, 40, 0.42))
-    drop-shadow(0 0 52px rgba(255, 60, 90, 0.24));
+    drop-shadow(0 0 12px rgba(255, 200, 110, 0.86))
+    drop-shadow(0 0 28px rgba(255, 120, 40, 0.44))
+    drop-shadow(0 0 58px rgba(255, 60, 90, 0.26));
   animation:
     neonTravel 1.55s linear infinite,
     neonFlicker 2.4s ease-in-out infinite;
 }
-.xp-window--flame > * {
+.xp-window--flame > :not(.neon-ring) {
   position: relative;
   z-index: 1;
 }
