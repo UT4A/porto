@@ -2,7 +2,7 @@ const profile = {
   name: "Utaa",
   role: "Video Editor",
   tagline:
-    "HI, nama ku Utaa dan aku siap bantu konten kamu kelihatan premium.",
+    "HI, my name is Utaa. I create short-form videos that keep viewers watching. ",
   tiktokProfileUrl: "https://www.tiktok.com/@dolbiaja?lang=en-GB",
   discordUrl: "https://discord.com/users/996760299229171732",
   instagramUrl: "https://www.instagram.com/goofvypz/",
