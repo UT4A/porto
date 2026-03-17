@@ -136,8 +136,8 @@ body.xp {
 .neon-ring__halo {
   fill: none;
   stroke: url(#neonGrad);
-  stroke-width: 2.4;
-  opacity: 0.38;
+  stroke-width: 5.0;
+  opacity: 1.0;
   filter:
     blur(1.6px)
     drop-shadow(0 0 14px rgba(255, 160, 70, 0.32))
