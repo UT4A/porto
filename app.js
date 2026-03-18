@@ -2,10 +2,10 @@ const profile = {
   name: "Utaa",
   role: "Video Editor",
   tagline:
-    "HI, my name is Utaa. I create short-form videos that keep viewers watching. ",
+    "HI, nama ku Utaa dan aku siap bantu konten kamu kelihatan premium.",
   tiktokProfileUrl: "https://www.tiktok.com/@dolbiaja?lang=en-GB",
   discordUrl: "https://discord.com/users/996760299229171732",
-  instagramUrl: "https://www.instagram.com/goofvypz/",
+  instagramUrl: "https://instagram.com/",
   stats: {
     years: "2+",
     projects: "120+",
@@ -312,20 +312,48 @@ async function fetchTikTokThumb(url) {
 
 const instagramThumbCache = new Map();
 
+function jinaProxyUrl(url) {
+  if (!url) return "";
+  const u = String(url);
+  if (u.startsWith("https://")) return "https://r.jina.ai/https://" + u.slice(8);
+  if (u.startsWith("http://")) return "https://r.jina.ai/http://" + u.slice(7);
+  return "https://r.jina.ai/https://" + u;
+}
+
+function extractOgImage(html) {
+  if (!html) return null;
+  // Prefer og:image, fall back to twitter:image if present.
+  const og = html.match(/property=[\"']og:image[\"'][^>]*content=[\"']([^\"']+)/i);
+  if (og && og[1]) return og[1];
+  const tw = html.match(/name=[\"']twitter:image[\"'][^>]*content=[\"']([^\"']+)/i);
+  if (tw && tw[1]) return tw[1];
+  return null;
+}
+
 async function fetchInstagramThumb(url) {
   if (!url) return null;
   if (instagramThumbCache.has(url)) return instagramThumbCache.get(url);
 
   const controller = new AbortController();
-  const timer = window.setTimeout(() => controller.abort(), 3500);
+  const timer = window.setTimeout(() => controller.abort(), 6000);
   try {
     const oembed = "https://www.instagram.com/oembed/?url=" + encodeURIComponent(url);
     const res = await fetch(oembed, { signal: controller.signal });
-    if (!res.ok) return null;
-    const json = await res.json();
-    const thumb = json && json.thumbnail_url ? String(json.thumbnail_url) : null;
-    instagramThumbCache.set(url, thumb);
-    return thumb;
+    if (res.ok) {
+      const json = await res.json();
+      const thumb = json && json.thumbnail_url ? String(json.thumbnail_url) : null;
+      instagramThumbCache.set(url, thumb);
+      return thumb;
+    }
+
+    // Fallback: fetch page HTML via a CORS-friendly proxy and scrape og:image.
+    const proxy = jinaProxyUrl(url);
+    const res2 = await fetch(proxy, { signal: controller.signal });
+    if (!res2.ok) return null;
+    const html = await res2.text();
+    const thumb2 = extractOgImage(html);
+    instagramThumbCache.set(url, thumb2);
+    return thumb2;
   } catch {
     return null;
   } finally {
@@ -380,6 +408,7 @@ function projectCard(project, index) {
   const img = document.createElement("img");
   img.alt = `Thumbnail: ${project.title}`;
   img.loading = "lazy";
+  img.referrerPolicy = "no-referrer";
   setProjectThumb(img, project);
   thumb.appendChild(img);
 
