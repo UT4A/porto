@@ -21,7 +21,7 @@ const projects = [
     year: "2026",
     duration: "0:15",
     tags: ["Short"],
-    thumb: "./assets/thumb-video-1.jpg",
+    thumb: "./assets/thumb-video-1.png",
     video: {
       type: "instagram",
       shortcode: "DVTcQnjj_tN",
@@ -87,7 +87,7 @@ const projects = [
     year: "2026",
     duration: "0:15",
     tags: ["Short"],
-    thumb: "./assets/windows-xp-garis.jpg",
+    thumb: "./assets/rrq-liam.png",
     video: {
       type: "instagram",
       shortcode: "DUzy4byk6rc",
@@ -101,7 +101,7 @@ const projects = [
     year: "2026",
     duration: "0:15",
     tags: ["Short"],
-    thumb: "./assets/windows-xp-pixel.jpg",
+    thumb: "./assets/video-7-thumb.png",
     video: {
       type: "instagram",
       shortcode: "DThBjFyD2bu",
