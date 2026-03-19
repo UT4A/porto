@@ -124,9 +124,9 @@ body.xp {
 
 .neon-ring {
   position: absolute;
-  inset: -10px; /* sit just outside the window edge */
+  inset: -16px; /* move the moving outline outside the window */
   pointer-events: none;
-  z-index: 0;
+  z-index: -1; /* behind the window so it doesn't sit "inside" */
 }
 .neon-ring svg {
   width: 100%;
