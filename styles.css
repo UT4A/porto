@@ -122,54 +122,11 @@ body.xp {
   animation: flameHaloPulse 2.2s ease-in-out infinite;
 }
 
-.neon-ring {
-  position: absolute;
-  inset: -16px; /* move the moving outline outside the window */
-  pointer-events: none;
-  z-index: -1; /* behind the window so it doesn't sit "inside" */
-}
-.neon-ring svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-.neon-ring__trace {
-  fill: none;
-  stroke: url(#neonGrad);
-  stroke-width: 2.2;
-  stroke-linecap: round;
-  stroke-dasharray: 10 90; /* normalized by pathLength=100 */
-  stroke-dashoffset: 0;
-  filter:
-    drop-shadow(0 0 12px rgba(255, 200, 110, 0.86))
-    drop-shadow(0 0 28px rgba(255, 120, 40, 0.44))
-    drop-shadow(0 0 58px rgba(255, 60, 90, 0.26));
-  animation:
-    neonTravel 1.55s linear infinite,
-    neonFlicker 2.4s ease-in-out infinite;
-}
-.xp-window--flame > :not(.neon-ring) {
+.xp-window--flame > * {
   position: relative;
   z-index: 1;
 }
 
-@keyframes neonTravel {
-  0% {
-    stroke-dashoffset: 0;
-  }
-  100% {
-    stroke-dashoffset: -100;
-  }
-}
-@keyframes neonFlicker {
-  0%,
-  100% {
-    opacity: 0.96;
-  }
-  50% {
-    opacity: 0.78;
-  }
-}
 @keyframes flameHaloPulse {
   0%,
   100% {
