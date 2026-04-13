@@ -21,9 +21,7 @@ const projects = [
     year: "2026",
     duration: "0:15",
     tags: ["Short"],
-    // Mosaic thumbnail: 4 crops from the same preview image (gives a "cuts" feel).
-    thumbMode: "mosaic",
-    thumb: "./assets/windows-xp-pixel.jpg",
+    thumb: "./assets/thumb-video-1.png",
     video: {
       type: "gdrive",
       id: "111LKrFwr3OhaNKMLuNoh0swUrq6Y-Ng9",
