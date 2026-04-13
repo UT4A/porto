@@ -21,7 +21,7 @@ const projects = [
     year: "2026",
     duration: "0:15",
     tags: ["Short"],
-    thumb: "./assets/thumb-video-1.png",
+    thumb: "./assets/thumb-1.png",
     video: {
       type: "gdrive",
       id: "111LKrFwr3OhaNKMLuNoh0swUrq6Y-Ng9",
