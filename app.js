@@ -21,11 +21,12 @@ const projects = [
     year: "2026",
     duration: "0:15",
     tags: ["Short"],
-    thumb: "./assets/thumb-video-1.png",
+    // Mosaic thumbnail: 4 crops from the same preview image (gives a "cuts" feel).
+    thumbMode: "mosaic",
+    thumb: "./assets/windows-xp-pixel.jpg",
     video: {
-      type: "instagram",
-      shortcode: "DVTcQnjj_tN",
-      url: "https://www.instagram.com/reel/DVTcQnjj_tN/",
+      type: "gdrive",
+      id: "111LKrFwr3OhaNKMLuNoh0swUrq6Y-Ng9",
     },
     description: "Short video portfolio.",
   },
@@ -115,11 +116,11 @@ const projects = [
     year: "2026",
     duration: "0:15",
     tags: ["Short"],
-    thumb: "./assets/windows-xp-kucing.jpg",
+    thumb: "./assets/thumb-video-1.png",
     video: {
-      type: "tiktok",
-      id: "7593273340782005522",
-      url: "https://www.tiktok.com/@hitbyrozi/video/7593273340782005522",
+      type: "instagram",
+      shortcode: "DVTcQnjj_tN",
+      url: "https://www.instagram.com/reel/DVTcQnjj_tN/",
     },
     description: "Short video portfolio.",
   },
@@ -129,11 +130,11 @@ const projects = [
     year: "2026",
     duration: "0:15",
     tags: ["Short"],
-    thumb: "./assets/windows-xp-garis.jpg",
+    thumb: "./assets/windows-xp-kucing.jpg",
     video: {
       type: "tiktok",
-      id: "7590742777709808916",
-      url: "https://www.tiktok.com/@hitbyrozi/video/7590742777709808916",
+      id: "7593273340782005522",
+      url: "https://www.tiktok.com/@hitbyrozi/video/7593273340782005522",
     },
     description: "Short video portfolio.",
   },
@@ -395,6 +396,24 @@ function setProjectThumb(imgEl, project) {
   imgEl.src = project.thumb;
 }
 
+function createMosaicThumb(project) {
+  const mosaic = document.createElement("div");
+  mosaic.className = "thumb__mosaic";
+
+  const positions = ["50% 15%", "50% 40%", "50% 65%", "50% 90%"];
+  for (let i = 0; i < 4; i++) {
+    const img = document.createElement("img");
+    img.alt = `Thumbnail: ${project.title} (cut ${i + 1})`;
+    img.loading = "lazy";
+    img.referrerPolicy = "no-referrer";
+    img.style.objectPosition = positions[i];
+    setProjectThumb(img, project);
+    mosaic.appendChild(img);
+  }
+
+  return mosaic;
+}
+
 function projectCard(project, index) {
   const wrapper = document.createElement("article");
   wrapper.className = "card";
@@ -404,12 +423,17 @@ function projectCard(project, index) {
   const thumb = document.createElement("div");
   thumb.className = "thumb";
 
-  const img = document.createElement("img");
-  img.alt = `Thumbnail: ${project.title}`;
-  img.loading = "lazy";
-  img.referrerPolicy = "no-referrer";
-  setProjectThumb(img, project);
-  thumb.appendChild(img);
+  if (project.thumbMode === "mosaic") {
+    thumb.classList.add("thumb--mosaic");
+    thumb.appendChild(createMosaicThumb(project));
+  } else {
+    const img = document.createElement("img");
+    img.alt = `Thumbnail: ${project.title}`;
+    img.loading = "lazy";
+    img.referrerPolicy = "no-referrer";
+    setProjectThumb(img, project);
+    thumb.appendChild(img);
+  }
 
   const play = document.createElement("div");
   play.className = "play";
