@@ -16,6 +16,16 @@ const profile = {
 // Tips: YouTube paling gampang pakai `type: "youtube"` dan `id` (bukan URL).
 const projects = [
   {
+    title: "Long Form 1",
+    category: "Long Form",
+    year: "2026",
+    duration: "—",
+    tags: ["Long"],
+    thumb: "./assets/windows-xp-pixel.jpg",
+    video: { type: "gdrive", id: "1RIjkzVGWRP9LLjtUgLv_Q7ePsMVZFpAM" },
+    description: "Long-form video portfolio.",
+  },
+  {
     title: "Video 1",
     category: "Shorts",
     year: "2026",
@@ -218,7 +228,8 @@ const elements = {
   btnInstagram: document.getElementById("btn-instagram"),
   footerName: document.getElementById("footer-name"),
   year: document.getElementById("year"),
-  grid: document.getElementById("grid"),
+  gridShorts: document.getElementById("gridShorts"),
+  gridLong: document.getElementById("gridLong"),
   q: document.getElementById("q"),
   chips: document.getElementById("chips"),
   modal: document.getElementById("modal"),
@@ -415,6 +426,7 @@ function createMosaicThumb(project) {
 function projectCard(project, index) {
   const wrapper = document.createElement("article");
   wrapper.className = "card";
+  if (project.category === "Long Form") wrapper.classList.add("card--long");
   wrapper.setAttribute("data-reveal", "");
   wrapper.style.transitionDelay = `${Math.min(index * 60, 240)}ms`;
 
@@ -458,18 +470,17 @@ function projectCard(project, index) {
   return wrapper;
 }
 
-function renderGrid(items) {
-  clearNode(elements.grid);
+function renderGridInto(container, items) {
+  clearNode(container);
   if (items.length === 0) {
     const empty = document.createElement("div");
     empty.className = "lead";
     empty.textContent = "Tidak ada video yang cocok dengan filter/cari kamu.";
-    elements.grid.appendChild(empty);
+    container.appendChild(empty);
     return;
   }
 
-  items.forEach((p, i) => elements.grid.appendChild(projectCard(p, i)));
-  revealInit();
+  items.forEach((p, i) => container.appendChild(projectCard(p, i)));
 }
 
 function chipButton(label, pressed, onClick) {
@@ -490,7 +501,13 @@ function applyFilters() {
     const okCat = activeCategory === "All" || p.category === activeCategory;
     return okCat && matchesQuery(p, activeQuery);
   });
-  renderGrid(filtered);
+
+  const shorts = filtered.filter((p) => p.category === "Shorts");
+  const longForm = filtered.filter((p) => p.category === "Long Form");
+
+  renderGridInto(elements.gridShorts, shorts);
+  renderGridInto(elements.gridLong, longForm);
+  revealInit();
 }
 
 function renderChips() {
@@ -598,6 +615,8 @@ function buildEmbed(project) {
 
 function openModal(project) {
   lastActiveElement = document.activeElement;
+
+  elements.modal.classList.toggle("modal--long", project.category === "Long Form");
 
   clearNode(elements.player);
   elements.player.appendChild(buildEmbed(project));
